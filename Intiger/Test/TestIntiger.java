@@ -1,22 +1,28 @@
-package Main;
+package Test;
 
-import java.util.Scanner;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-/**
- * largerinteger2
- */
-public class largerinteger2 {
+public class largerinteger2Test {
 
-    public static void main(String[] args) {
-        Scan3ner scanner = new Scanner(System.in);
-        System.out.println("Enter the first integer: ");
-        int firstInt = scanner.nextInt();
-        System.out.println("Enter the second integer: ");
-        int secondInt = scanner.nextInt();
-        if (firstInt > secondInt) {
-            System.out.println("The larger integer is: " + firstInt);
-        } else {
-            System.out.println("The larger integer is: " + secondInt);
-        }
-    }
+ @Test
+   
+    public void testFirstIntLarger() {
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(outContent));
+    
+    String input = "10\n5\n"; // simulate user input "10" and "5"
+    InputStream in = new ByteArrayInputStream(input.getBytes());
+    System.setIn(in);
+    
+    LargerInteger2.main(new String[]{});
+    
+    String expectedOutput = "The larger integer is: 10\n";
+    assertEquals(expectedOutput, outContent.toString());
+}
+
 }
